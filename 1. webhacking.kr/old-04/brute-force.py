@@ -2,7 +2,7 @@ import hashlib
 from random import *
 from multiprocessing import Process, Queue
 
-def work(start, end, key):
+def work(start, end):
 	for j in range(start,end):
 		tmp=str(j)
 		#print(tmp)
@@ -10,20 +10,20 @@ def work(start, end, key):
 		for i in range(0,500):
 			data = hashlib.sha1(data.encode('utf-8')).hexdigest()
 		
-		if data == key:
+		if data == "796c845cc69a2f36997ec92573c55328c76f1e9e":
 		 	print(tmp+"salt_for_you")
 		 	break
 
 if __name__ == "__main__":
-	pr1 = Process(target=work, args=(10000000,20000000,"76f7863a772c7844d9c9fd016dba5bac3d7f7046"))
-	pr2 = Process(target=work, args=(20000000,30000000,"76f7863a772c7844d9c9fd016dba5bac3d7f7046"))
-	pr3 = Process(target=work, args=(30000000,40000000,"76f7863a772c7844d9c9fd016dba5bac3d7f7046"))
-	pr4 = Process(target=work, args=(40000000,50000000,"76f7863a772c7844d9c9fd016dba5bac3d7f7046"))
-	pr5 = Process(target=work, args=(50000000,60000000,"76f7863a772c7844d9c9fd016dba5bac3d7f7046"))
-	pr6 = Process(target=work, args=(60000000,70000000,"76f7863a772c7844d9c9fd016dba5bac3d7f7046"))
-	pr7 = Process(target=work, args=(70000000,80000000,"76f7863a772c7844d9c9fd016dba5bac3d7f7046"))
-	pr8 = Process(target=work, args=(80000000,90000000,"76f7863a772c7844d9c9fd016dba5bac3d7f7046"))
-	pr9 = Process(target=work, args=(90000000,100000000,"76f7863a772c7844d9c9fd016dba5bac3d7f7046"))
+	pr1 = Process(target=work, args=(10000000,20000000))
+	pr2 = Process(target=work, args=(20000000,30000000))
+	pr3 = Process(target=work, args=(30000000,40000000))
+	pr4 = Process(target=work, args=(40000000,50000000))
+	pr5 = Process(target=work, args=(50000000,60000000))
+	pr6 = Process(target=work, args=(60000000,70000000))
+	pr7 = Process(target=work, args=(70000000,80000000))
+	pr8 = Process(target=work, args=(80000000,90000000))
+	pr9 = Process(target=work, args=(90000000,100000000))
 	
 	pr1.start()
 	pr2.start()
