@@ -1,20 +1,23 @@
 import hashlib
 from random import *
 from multiprocessing import Process, Queue
+import os
 
 def work(start, end):
+	f = open("rainbowtable/rainbow_"+str(start)+".txt", "w")
 	for j in range(start,end):
-		tmp=str(j)
-		#print(tmp)
-		data=tmp+"salt_for_you"
+		tmp=str(j)+"salt_for_you"
+		data=tmp
+		#print(data)
 		for i in range(0,500):
 			data = hashlib.sha1(data.encode('utf-8')).hexdigest()
-		
-		if data == "796c845cc69a2f36997ec92573c55328c76f1e9e":
-		 	print(tmp+"salt_for_you")
-		 	break
+		f.write(tmp+" : "+data[0:8]+"\n")
+	f.close()
 
 if __name__ == "__main__":
+	if not os.path.isdir('rainbowtable'):
+		os.mkdir('rainbowtable')
+
 	pr1 = Process(target=work, args=(10000000,20000000))
 	pr2 = Process(target=work, args=(20000000,30000000))
 	pr3 = Process(target=work, args=(30000000,40000000))
