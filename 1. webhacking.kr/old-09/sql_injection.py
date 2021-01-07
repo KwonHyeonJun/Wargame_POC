@@ -20,7 +20,7 @@ for i in range(1,20):
 			
 			response = urllib.request.urlopen(data, context=context).read().decode('utf8')
 			if response.find("Secret") != -1 and tmp!="45" and j!=37 and j!=95 and j!=92:
-				print(chr(j))
+				#print(chr(j))
 				ans_hex = tmp
 				ans = chr(j)+ans
 				break
